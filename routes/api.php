@@ -50,6 +50,7 @@ Route::controller(AuthController::class)->group(function () {
             Route::put('updatePassword/{user}', 'updatePassword')->middleware(['permission:edit my profil|edit all profil']);
             Route::delete('/{user}', 'destroy')->middleware(['permission:delete my profil|delete all profil']);
             Route::put('changerole/{user}', 'changeRole')->middleware(['permission:change role user']);
+
         });
 
 
@@ -64,7 +65,7 @@ Route::controller(ProductController::class)->group(function () {
 
 Route::get('filter', [FilterController::class, 'filter']);
 
-Route::group(['controller' => RoleController::class, 'prefix' => 'v1/roles','middleware'=>'auth:api'], function () {
+Route::group(['controller' => RoleController::class, 'prefix' => 'control/roles','middleware'=>'auth:api'], function () {
     Route::get('', 'index')->middleware(['permission:view role']);
     Route::post('', 'store')->middleware(['permission:add role']);
     Route::get('/{role}', 'show')->middleware(['permission:view role']);

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api\control;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\req\ChangeRoleRequest;
 use App\Http\Requests\req\UpdateNameEmailUserRequest;
 use App\Http\Requests\req\UpdatePasswordUserRequest;
+use App\Http\Resources\UserResource;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -64,6 +66,8 @@ class UserController extends Controller
             'user' => $user
         ], 200);
     }
+
+
     public function updatePassword(UpdatePasswordUserRequest $request, User $user)
     {
 
@@ -110,5 +114,18 @@ class UserController extends Controller
             'status' => true,
             'message' => 'User deleted successfully'
         ], 200);
+    }
+
+
+
+    public function changeRole(ChangeRoleRequest $request,User $user){
+
+        $user->syncRoles($request->validated());
+
+        return response()->json([
+            'status' => true,
+            'message' => "User updated successfully!",
+            'data' => new UserResource($user)
+        ], Response::HTTP_OK);
     }
 }

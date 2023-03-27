@@ -36,6 +36,12 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'delete category']);
         Permission::create(['name' => 'view category']);
 
+        Permission::create(['name' => 'add role']);
+        Permission::create(['name' => 'edit role']);
+        Permission::create(['name' => 'delete role']);
+        Permission::create(['name' => 'view role']);
+        Permission::create(['name' => 'change role user']);
+
         // Define roles available
         $admin = 'admin';
         $seller = 'seller';
