@@ -30,6 +30,8 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'edit My product']);
         Permission::create(['name' => 'delete All product']);
         Permission::create(['name' => 'delete My product']);
+        Permission::create(['name' => 'view product']);
+        Permission::create(['name' => 'view my product']);
 
         Permission::create(['name' => 'add category']);
         Permission::create(['name' => 'edit category']);
@@ -53,6 +55,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'add product',
             'edit My product',
             'delete My product',
+            'view my product',
             'edit my profil',
             'delete my profil',
             'view my profil',

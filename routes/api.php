@@ -31,6 +31,7 @@ Route::controller(AuthController::class)->group(function () {
         Route::post('refresh', 'refresh'); 
 
         Route::group(['controller' => ProductController::class, 'prefix' => 'control/products','middleware'=>'auth:api'], function () {
+            Route::get('', 'index')->middleware(['permission:view product']);
             Route::post('', 'store')->middleware(['permission:add product']);
             Route::put('/{product}', 'update')->middleware(['permission:edit All product|edit My product']);
             Route::delete('/{product}', 'destroy')->middleware(['permission:delete All product|delete My product']);
@@ -70,5 +71,6 @@ Route::group(['controller' => RoleController::class, 'prefix' => 'control/roles'
     Route::post('', 'store')->middleware(['permission:add role']);
     Route::get('/{role}', 'show')->middleware(['permission:view role']);
     Route::put('/{role}', 'update')->middleware(['permission:edit role']);
+    Route::delete('/{role}', 'destroy')->middleware(['permission:delete role']);
 });
 
